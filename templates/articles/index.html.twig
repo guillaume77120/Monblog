@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles index
+{% endblock %}
+
+{% block body %}
+
+
+	<table>
+
+		<tr>
+			<th>title</th>
+			<th>description</th>
+			<th>contenu</th>
+			<th>auteur</th>
+		</tr>
+
+
+		{% for article in articles %}
+			<tr>
+				<td>{{ article.title}}</td>
+
+				<td>{{ article.description}}</td>
+
+				<td>{{ article.content}}</td>
+				<td>
+					<a
+						class="flex items-center no-underline hover:underline text-black" href="{{path('app_profil_show', {'id': article.user.id} )}}">
+						<!--<img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random%22%3E"/>-->
+						<p class="text-sm">
+							{{ article.user.firstname ~ ' ' ~ article.user.lastname }}
+						</p>
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+
+	</table>
+
+	<a href="{{ path('app_articles_new') }}">Create new</a>
+{% endblock %}
